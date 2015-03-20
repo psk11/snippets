@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Card Validator</title>
+
+    <script type="text/javascript">
+ 
+ function check()
+    {
+        var no = document.getElementById("no").value;
+        if( no != "" )
+        {
+          if(no != undefined && validate(no))
+          {
+              window.alert("The Entered Card Is Valid");
+          }
+          else
+          {
+              window.alert("Card Number Invalid !!!!!");
+          }
+        }
+        else
+        {
+          alert('Please enter your card number');
+        }
+    }
+    function validate(num)
+    {
+        var result = false;
+        var numArray = new Array();
+        numArray = num.split('');
+        var sum=0;
+        for(var i = 0; i< numArray.length; i += 2)
+        {
+           numArray[i] = numArray[i]*2;
+           if(numArray[i] >= 10)
+           {
+              var temp = new Array();
+              temp = numArray[i].toString().split('');
+              sum = sum + parseInt(temp[0]) + parseInt(temp[1]);  
+           }
+           else
+           {
+                sum = sum + parseInt(numArray[i]);
+           }
+           sum = sum + parseInt(numArray[i+1]);
+        }
+        if(sum % 10 === 0)
+        {
+            result = true;
+        }
+        return result;
+        		
+    }
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        No<input type="text" id="no" />
+        <button type="submit" onclick="check();return false">
+            check</button>
+    </div>
+    </form>
+</body>
+</html>

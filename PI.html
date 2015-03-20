@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Finding PI</title>
+    <script type="text/javascript">
+    function getPI()
+    {
+        var num = parseFloat(document.getElementById("num").value);
+        var limit = parseFloat(document.getElementById("digits").value);
+        if (!isNaN(num) && !isNaN(limit) && limit < 21)
+        {
+//            document.getElementById("piValue").innerHTML = (num * Math.atan(1/5) - 4 * Math.atan(1/239)).toFixed(limit);
+              var pi = (num * Math.PI).toFixed(limit);
+              document.getElementById("piValue").innerHTML = "The <b>PI</b> value of " + "<b>"+num+"</b>" + " is " + "<b>"+pi+"</b>";  
+        }
+        else
+        {
+            window.alert("Please Enter Only Numbers and Fill Limit Upto Than 20");
+            num = "";
+            limit = "";
+        }
+    }
+    
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        Enter Number :
+        <input type="text" id="num" /><br />
+        Enter Decimal Limit :
+        <input type="text" id="digits" /><br />
+        <button onclick="getPI();return false">
+            <strong>Get The Result In PI</strong></button><br />
+        <p id="piValue">
+        </p>
+    </div>
+    
+    </form>
+</body>
+</html>

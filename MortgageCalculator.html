@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Mortagage Calculator</title>
+
+    <script type="text/javascript">
+    function fnLoan()
+    {
+    var printField = document.getElementById("print");
+    var amount = parseFloat(document.getElementById("amt").value);
+    var rate = parseFloat(document.getElementById("rate").value);
+    var term = parseFloat(document.getElementById("term").value);
+    if(isNaN(amount) || isNaN(rate) || isNaN(term))
+    {
+        printField.innerHTML = "Incorrect value in amount/rate/term";
+    }
+    else
+    {
+        printRate(amount,rate,term);
+    }
+    }
+    function printRate(amt,rate,term)
+    {
+        var printField = document.getElementById("print");
+        var totalGrossAmt = amt * (rate/100);
+        var amtSix = amt + (totalGrossAmt * term/12);
+        var emi = amtSix /term;
+        emi = Math.round(emi); 
+        printField.innerHTML = "EMI for mortgage " + amt + " will be " + emi + " per month for " + term + " months.";
+    }
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <strong>Enter The Amount To Morgage:</strong>
+        <input id="amt" type="text" /><br />
+    </div>
+    <div>
+        <strong>Enter Rate Of Interest :</strong>
+        <input id="rate" type="text" />
+        <br />
+        <strong>Enter No. Of Term Months :</strong>
+        <input id="term" type="text" /><br />
+        <button type="submit" onclick="fnLoan();return false">
+            Get Details</button>
+        <p id="print">
+        </p>
+    </div>
+    </form>
+</body>
+</html>

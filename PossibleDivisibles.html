@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Possible Divisibles</title>
+    <script type="text/javascript">
+    function checkFactors()
+    {
+        var number = document.getElementById("num").value;
+        var printField = document.getElementById("pField");
+        var printValue = "The Possible Divisibles Of " + number + " Are : <br>";
+        for(var i = 1; i <= number; i++ )
+        {
+            if(number % i === 0)
+            {
+                printValue += i + "<br>";
+            }
+        }
+        printField.innerHTML = printValue;
+    }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <input type="text" id = "num" /> &nbsp;&nbsp;&nbsp;&nbsp; 
+    <button type="submit" onclick="checkFactors();return false"><strong> Check Factors </strong></button>
+    <p id="pField"></p>
+    </div>
+    </form>
+</body>
+</html>

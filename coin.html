@@ -1,0 +1,37 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="coin.aspx.cs" Inherits="coin" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>FLIP COIN</title>
+    <script type="text/javascript">
+    function startFlip()
+    {
+        var flips = parseInt(document.getElementById("times").value);
+        var heads = 0, tails = 0, i=0;
+        if(isNaN(flips))
+        {
+            alert("Please Enter Flips In Number....");
+            document.getElementById("times").value = "";
+            return;
+        }
+        for(i = 0; i<flips; i++)
+        {
+            Math.round(Math.random()) ? heads++ : tails++;
+        }
+        alert("Number of Heads : " + heads + "\n" + "Number of Tails : " + tails);
+    }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <h1>COIN FLIP SIMULATION</h1>
+    </div><br />
+    <h4>Enter Number Of Flips :</h4> &nbsp;&nbsp;
+    <input type="text" id="times" /><br />
+    <button type="submit" onclick="startFlip();return false">Flip Coin</button>
+    </form>
+</body>
+</html>

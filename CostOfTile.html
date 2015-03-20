@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Cost Of Tile</title>
+
+    <script type="text/javascript">
+    function getCost()
+    {
+        var height = parseFloat(document.getElementById("tHeight").value);
+        var width = parseFloat(document.getElementById("tlWid").value);
+        var costFt = parseFloat(document.getElementById("tCost").value);
+        if(isNaN(height) || isNaN(width) || isNaN(costFt))
+        {
+            window.alert("Please Enter Only Numbers In The Fields");
+        }
+        else
+        {
+            var totalCost = height * width * costFt;
+            document.getElementById("totalCost").innerHTML = "Total cost of tile is " + totalCost;
+        }
+    }
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        Enter Tile Width :
+        <input type="text" id="tlWid" />
+        Enter Tile Height :
+        <input type="text" id="tHeight" />
+        Enter Cost Per Sq. Ft. :
+        <input type="text" id="tCost" />
+        <button type="submit" onclick="getCost();return false">
+            <strong>Get Total Cost</strong></button>
+        <p id="totalCost">
+        </p>
+    </div>
+    </form>
+</body>
+</html>
