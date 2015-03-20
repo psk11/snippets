@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Fibonacci Series</title>
+
+    <script type="text/javascript">
+    function getSeries()
+    {
+        var startNum = parseInt(document.getElementById("sNum").value);
+        var limit = parseInt(document.getElementById("eNum").value);
+        var field = document.getElementById("series");
+        field.innerHTML = "";
+        if(!isNaN(startNum) && !isNaN(limit))
+        {
+            for(var i = startNum; i <= limit+startNum; i++ )
+            {
+                field.innerHTML += generateSeries(i) + "<br/>";
+            }
+        }
+        else
+        {
+            field.innerHTML = "Please Provide Only Numbers in The Fields.....";
+        } 
+    }
+    function generateSeries(num)
+    {
+        var a = 0,b=1;
+        for(var i = 0; i < num-1; i++ )
+        {
+            var temp = a;
+            a = b;
+            b += temp;
+        }
+        return a;
+    }
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <strong>Enter The First Number Of Series :</strong>
+        <input type="text" id="sNum" /><br />
+        <strong>Enter The Limit :</strong>
+        <input type="text" id="eNum" /><br />
+        <button type="submit" onclick="getSeries();return false">
+            <strong>Generate The Series</strong></button>
+        <p id="series">
+        </p>
+    </div>
+    </form>
+</body>
+</html>

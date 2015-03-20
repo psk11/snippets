@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Get Distance</title>
+    <script type="text/javascript" src="maps.js">
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        var dt = new Array();
+        function fn(){
+        var str = "";
+        var geocoder = new google.maps.Geocoder();
+        var addressFrom = document.getElementById("txtFrmCon").value + "," + document.getElementById("txtFrmCity").value ;
+        var addressTo = document.getElementById("txtToCity").value + "," +document.getElementById("txtToCon").value;
+        fetch(addressFrom);
+        fetch(addressTo);
+        if(dt.length === 4)
+        {
+            var distance = getDistance(dt);
+            distance = distance.toFixed(2);
+            alert(distance + " Kms");
+            location.reload();
+        }
+        //alert(str);
+        function fetch(address){
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          var location = results[0].geometry.location;
+          dt.push(location.lat());
+          dt.push(location.lng());
+            });
+            }
+            }
+            function getDistance(dt) {
+              var R = 6371; // Radius of the earth in km
+              var dLat = deg2rad(dt[2]-dt[0]);  // deg2rad below
+              var dLon = deg2rad(dt[3]-dt[1]); 
+              var a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(deg2rad(dt[0])) * Math.cos(deg2rad(dt[2])) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2); 
+              var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+              var d = R * c; // Distance in km
+              return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+    </script>
+
+    <style type="text/css">
+        .style1
+        {
+            height: 33px;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <p id="output">
+    </p>
+    <div>
+        <table border="5">
+            <tr>
+                <td>
+                    From
+                </td>
+                <td>
+                    To
+                </td>
+            </tr>
+            <tr>
+                <td class="style1">
+                    State :
+                    <input id="txtFrmCon" type="text" value="Maharashtra" />
+                </td>
+                <td class="style1">
+                    State :
+                    <input id="txtToCon" type="text" value="Maharashtra" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    City :
+                    <input id="txtFrmCity" type="text" />
+                </td>
+                <td>
+                    City :
+                    <input id="txtToCity" type="text" />
+                </td>
+            </tr>
+        </table>
+        <button type="button" id="btn" onclick="fn();return false">
+            clck me</button>
+    </div>
+    </form>
+</body>
+</html>

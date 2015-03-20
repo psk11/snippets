@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Change Return</title>
+    <script type="text/javascript" src="JScript.js"></script>
+    <script type="text/javascript">
+    function getChange(){
+    var kinds = ["Quarter","Nickle","Dime","Pennie"];
+    var values = [25,10,5,1];
+    var price = parseInt(document.getElementById("pri").value);
+    var amount = parseInt(document.getElementById("amt").value);
+    var printData = "" ;
+        if(!isNaN(price) || !isNaN(amount))
+        {
+            if(price < 0 || amount < 0)
+            {
+                alert("Price or amount can not be less than zero.");
+                return;
+            }
+            if(price > amount)
+            {
+                document.getElementById("pri").value = "";
+                document.getElementById("amt").value = "";
+                window.alert("Price Can Not Be Greater Than Amount Given!!!!!");
+            }
+            else if(price === amount )
+            {
+                document.getElementById("pri").value = "";
+                document.getElementById("amt").value = "";
+                window.alert("Amount Given and Price Both Are Same, Change Not Requred ");
+            }
+            else
+            {
+                var change = amount - price;
+                        for(var i=0; i<values.length; i++)
+                        {
+                            var quantity = change/values[i];
+                            if(quantity >= 1)
+                            {
+                                quantity = Math.floor(quantity);
+                                printData += quantity + " " + kinds[i] + "(s)" + "<br>";
+                                change -= quantity * values[i];
+                            }
+                        }
+                    document.getElementById("resultChange").innerHTML = printData;
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    Enter The Price : <input type = "text" id="pri" /><br />
+    Enter The Amount Given : <input type="text" id="amt" /><br />
+    <button type="submit" onclick="getChange();return false "><b>Get Your Possible Change</b></button>
+    <p id="resultChange"></p>
+    </div>
+    </form>
+</body>
+</html>

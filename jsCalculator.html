@@ -1,0 +1,110 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+    <style type="text/css">
+         button
+        {
+            font-family: "Times New Roman";
+            font-size: larger;
+            width:50px;
+            height:40px;
+        }
+        input
+        {
+            width:232px;
+            height:35px;
+        }
+        form
+        {
+            margin: 0 auto; 
+            width:250px;
+        }
+    </style>
+    <script type="text/javascript">
+    function editDisplay(e)
+    {
+       document.getElementById("Input").value += e;
+    }
+    function showResult(total)
+    {
+        if(total != undefined && total != Infinity)
+        {
+            document.getElementById("Input").value = total ;
+        }
+        else
+        {
+            alert("Provide Proper Expression...");
+        }
+    }
+    </script>
+</head>
+<body>
+    <form id="form1" style="text-align:center;" >
+    <table border="5">
+        <tr>
+            <td>
+                <input type="text" style="font-size: larger; text-align: right;" id="Input" size="16" />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" onclick="editDisplay('1')">1</button>
+                <button type="button" onclick="editDisplay('2')">
+                    2
+                </button>
+                <button type="button" onclick="editDisplay('3')">
+                    3
+                </button>
+                <button type="button" onclick="editDisplay('+')">
+                    +
+                </button>
+                <br />
+                <button type="button" onclick="editDisplay('4')">
+                    4
+                </button>
+                <button type="button" onclick="editDisplay('5')">
+                    5
+                </button>
+                <button type="button" onclick="editDisplay('6')">
+                    6
+                </button>
+                <button type="button" onclick="editDisplay('-')">
+                    -
+                </button>
+                <br />
+                <button type="button" onclick="editDisplay('7')">
+                    7
+                </button>
+                <button type="button" onclick="editDisplay('8')">
+                    8
+                </button>
+                <button type="button" onclick="editDisplay('9')">
+                    9
+                </button>
+                <button type="button" onclick="editDisplay('*')">
+                    *
+                </button>
+                <br />
+                <button type="button" onclick="document.getElementById('Input').value = ''">
+                    C
+                </button>
+                <button type="button" onclick="editDisplay('0')">
+                    0
+                </button>
+                <button type="button" onclick="showResult(eval(document.getElementById('Input').value));return false">
+                    =
+                </button>
+                <button type="button" onclick="editDisplay('/')">
+                    /
+                </button>
+                <br />
+                 <button type="button" onclick="showResult(Math.sqrt(eval(document.getElementById('Input').value)));return false">&radic;
+                </button>
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

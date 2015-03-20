@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Prime Factors</title>
+    <script type="text/javascript">
+    function printFactors()
+    {
+        var num = parseInt(document.getElementById("number").value);
+        var printFactors = "The Possible Prime Factors of " + num + " are: " ;
+        var printField = document.getElementById("field");
+        var i = 2;
+        while(num > 1)
+        {
+            if(num % i === 0)
+            {
+                printFactors += i + " ";
+                num = num/i;
+            }
+            else
+            i++;
+        } 
+        printField.innerHTML = printFactors;
+    }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <strong>Please Enter A Number To Find Its Possible Prime Factors:</strong><br />
+    <input type="text" id="number" />
+    &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" onclick="printFactors();return false" ><b>Get Factors</b></button><br />
+    <p id="field"></p>
+    </div>
+    </form>
+</body>
+</html>

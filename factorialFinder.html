@@ -1,0 +1,53 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="factorialFinder.aspx.cs" Inherits="factorialFinder" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Find Factorial</title>
+    <script type="text/javascript">
+    function getFactorial()
+    {
+        var n = document.getElementById("num").value;
+        var product = 1;
+        if(n == 0)
+        {
+            document.getElementById("printf").innerHTML = "1";
+        }
+        else
+        {
+            for(var i = n; i > 1; i-- )
+            {
+                product = product * n;
+                n -= 1;
+            }
+            document.getElementById("printf").innerHTML = product;
+        }
+    }
+//            var product = 1;
+//            function rec(n)
+//            {   
+//                n = parseInt(n);
+//                if(n <= 1)
+//                {
+//                   // product = 1;
+//                }
+//                else
+//                {
+//                   product = n * rec(n-1);
+//                }
+//                document.getElementById("printf").innerHTML = product;
+//            }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <strong> Enter A Number :</strong>
+    <input type="text" id="num" />
+    <br /><button type="submit" onclick="getFactorial(document.getElementById('num').value);return false">Get Factorial</button>
+    <p id="printf"></p>
+    </div>
+    </form>
+</body>
+</html>
